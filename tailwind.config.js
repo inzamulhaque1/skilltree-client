@@ -7,6 +7,10 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  darkMode: "class",
+  plugins: [
+    // eslint-disable-next-line no-undef
+    require('daisyui'),
+  ],
 }
 
