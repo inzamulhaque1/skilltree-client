@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
+import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 
 const Navbar = ({ toggleTheme, theme }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const links = (
     <>
       <li>
@@ -40,11 +43,23 @@ const Navbar = ({ toggleTheme, theme }) => {
           Add Tutorials
         </NavLink>
       </li>
+      <li>
+        <NavLink
+          to="/book"
+          className={({ isActive }) =>
+            isActive
+              ? "text-white font-bold bg-purple-500 py-2 px-3 rounded-r-full rounded-l-xl"
+              : "text-purple-500 font-bold py-2 px-3 hover:text-green-500"
+          }
+        >
+          My Bookings
+        </NavLink>
+      </li>
     </>
   );
 
   return (
-    <div className="bg-white dark:bg-gray-800">
+    <div className="bg-white dark:bg-[#0B0716]">
       <div className="navbar w-11/12 md:w-9/12 mx-auto mt-3 flex items-center">
         {/* Left Section */}
         <div className="navbar-start flex items-center">
@@ -87,17 +102,16 @@ const Navbar = ({ toggleTheme, theme }) => {
             </svg>
           </label>
 
-          {/* Avatar */}
-
-          <div className="avatar">
-                <div className="w-12 rounded-full">
-                  <img
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                    alt="Profile"
-                    className="w-full h-full rounded-full object-cover"
-                  />
-                </div>
-              </div>
+          {/* Avatar (Hidden on Mobile) */}
+          <div className="avatar hidden md:block">
+            <div className="w-12 rounded-full">
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                alt="Profile"
+                className="w-full h-full rounded-full object-cover"
+              />
+            </div>
+          </div>
 
           {/* Sign Up Button */}
           <Link
@@ -106,8 +120,38 @@ const Navbar = ({ toggleTheme, theme }) => {
           >
             Sign Up
           </Link>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="lg:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              />
+            </svg>
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="lg:hidden">
+          <ul className="menu-vertical border border-purple-600 px-4 py-2 rounded-md">
+            {links}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

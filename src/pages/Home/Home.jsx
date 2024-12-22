@@ -1,11 +1,15 @@
-
+import { useOutletContext } from "react-router-dom";
+import Banner from "./Banner";
 
 const Home = () => {
-    return (
-        <div className="dark:bg-gray-800 dark:text-white">
-            This the te sweet home
-        </div>
-    );
+  const { theme } = useOutletContext();
+
+  return (
+    <div>
+      <Banner theme={theme} />
+      {/* Add other sections for the Home page here */}
+    </div>
+  );
 };
 
 export default Home;
