@@ -91,17 +91,29 @@ const AddTutorials = () => {
             />
           </div>
           <div>
-            <label className="block font-semibold mb-2" htmlFor="language">
-              Language
-            </label>
-            <input
-              type="text"
-              id="language"
-              name="language"
-              required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
-            />
-          </div>
+  <label className="block font-semibold mb-2" htmlFor="language">
+    Language
+  </label>
+  <select
+    id="language"
+    name="language"
+    required
+    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+  >
+    <option value="" disabled selected>
+      Select Language
+    </option>
+    <option value="English">English</option>
+    <option value="Spanish">Spanish</option>
+    <option value="French">French</option>
+    <option value="German">German</option>
+    <option value="Italian">Italian</option>
+    <option value="Chinese">Chinese</option>
+    <option value="Arabic">Arabic</option>
+    <option value="Japanese">Japanese</option>
+    <option value="Portuguese">Portuguese</option>
+  </select>
+</div>
           <div>
             <label className="block font-semibold mb-2" htmlFor="price">
               Price

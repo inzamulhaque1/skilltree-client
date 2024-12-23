@@ -1,9 +1,13 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useAuth } from "../providers/AuthProvider";
+
 
 const Navbar = ({ toggleTheme, theme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logOut } = useAuth(); // Destructure user and logOut from useAuth
+
 
   const links = (
     <>
@@ -103,23 +107,31 @@ const Navbar = ({ toggleTheme, theme }) => {
           </label>
 
           {/* Avatar (Hidden on Mobile) */}
-          <div className="avatar hidden md:block">
-            <div className="w-12 rounded-full">
-              <img
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                alt="Profile"
-                className="w-full h-full rounded-full object-cover"
-              />
+          {user && (
+            <div className="avatar hidden md:block">
+              <div className="w-12 rounded-full">
+                <img
+                  src={user.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} // Use the user's profile image or fallback
+                  alt="Profile"
+                  className="w-full h-full rounded-full object-cover"
+                />
+              </div>
             </div>
-          </div>
+          )}
 
-          {/* Sign Up Button */}
-          <Link
-            to="/"
-            className="btn bg-green-500 text-white px-4 py-2 font-bold"
-          >
-            Sign Up
-          </Link>
+          {/* Conditional Login/Logout Button */}
+          {!user ? (
+            <Link to="/login" className="btn bg-green-500 text-white px-4 py-2 font-bold">
+              Sign In
+            </Link>
+          ) : (
+            <button
+              onClick={logOut}
+              className="btn bg-red-500 text-white px-4 py-2 font-bold"
+            >
+              Sign Out
+            </button>
+          )}
 
           {/* Mobile Menu Button */}
           <button
@@ -137,7 +149,7 @@ const Navbar = ({ toggleTheme, theme }) => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                d="M4 6h16M4 12h16m-7 6h7"
+                d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
           </button>
@@ -147,7 +159,7 @@ const Navbar = ({ toggleTheme, theme }) => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="lg:hidden">
-          <ul className="menu-vertical border border-purple-600 px-4 py-2 rounded-md">
+          <ul className="menu p-4 bg-base-100 text-base-content">
             {links}
           </ul>
         </div>

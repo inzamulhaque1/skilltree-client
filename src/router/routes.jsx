@@ -5,6 +5,9 @@ import FindTutors from "../pages/FindTutors";
 import AddTutorials from "../pages/AddTutorials";
 import TutorDetails from "../pages/TutorDetails";
 import Bookings from "../pages/Bookings";
+import SignUp from "../pages/SignUp";
+import Login from "../pages/Login";
+import PrivateRoute from "./PrivateRoute";
 
 const routes = createBrowserRouter([
   {
@@ -14,6 +17,7 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: () => fetch("http://localhost:5000/tutorial"),
       },
       {
         path: "find-tutors",
@@ -32,8 +36,16 @@ const routes = createBrowserRouter([
       },
       {
         path: "book",  // New route for viewing bookings
-        element: <Bookings />,
-        loader: () => fetch("http://localhost:5000/bookings"),  // Fetch bookings from the server
+        element: <PrivateRoute><Bookings /></PrivateRoute>,
+        loader: () => fetch("http://localhost:5000/book"),  // Fetch bookings from the server
+      },
+      {
+        path: "sign-up",
+        element: <SignUp />,
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
     ],
   },
