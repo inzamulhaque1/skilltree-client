@@ -75,11 +75,11 @@ const Bookings = () => {
   // Handle review click
   const handleReview = (id) => {
     const updatedBookings = bookings.map((booking) => {
-      if (booking._id === id) {
-        const newReviewCount = booking.review + 1; // Increase review count
-        return { ...booking, review: newReviewCount }; // Update the booking with the new review count
-      }
-      return booking;
+        if (booking._id === id) {
+            const newReviewCount = booking.review + 1; // Increase review count
+            return { ...booking, review: newReviewCount }; // Update the booking with the new review count
+        }
+        return booking;
     });
 
     // Update the local state with the new review count
@@ -87,24 +87,25 @@ const Bookings = () => {
 
     // Send the updated review count to the backend
     fetch(`http://localhost:5000/book/${id}`, {
-      method: "PATCH", // Use PATCH to update the review count
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        review: updatedBookings.find((booking) => booking._id === id).review,
-      }),
+        method: "PATCH", // Use PATCH to update the review count
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            review: updatedBookings.find((booking) => booking._id === id).review,
+        }),
     })
-      .then((response) => response.json())
-      .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
         if (data.modifiedCount > 0) {
-          Swal.fire("Success", "Review added!", "success");
+            Swal.fire("Success", "Review added!", "success");
         } else {
-          Swal.fire("Error", "Failed to update review", "error");
+            Swal.fire("Error", "Failed to update review", "error");
         }
-      })
-      .catch((error) => console.error("Error updating review:", error));
-  };
+    })
+    .catch((error) => console.error("Error updating review:", error));
+};
+
 
   return (
     <div className="container mx-auto p-6">

@@ -1,23 +1,40 @@
+import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/firebase.init";
 
 const Status = () => {
     const tutorials = useLoaderData();
-    
-    const uniqueLanguages = new Set(tutorials.map(user => user.language));
-    const uniqueReview = new Set(tutorials.map(user => user.review));
+    const [userCount, setUserCount] = useState(0);
 
-    // Get the count of unique languages
+    // Fetch the user count from Firestore
+    useEffect(() => {
+        const fetchUserCount = async () => {
+            try {
+                const usersSnapshot = await getDocs(collection(db, "users"));
+                const users = usersSnapshot.docs.map(doc => doc.data()); // Get data from documents
+                setUserCount(users.length); // Set the user count based on the fetched data
+            } catch (error) {
+                console.error("Error fetching user count:", error);
+            }
+        };
+
+        fetchUserCount();
+    }, []);
+
+    // Calculate the sum of all reviews
+    const totalReviews = tutorials.reduce((sum, tutorial) => sum + (tutorial.review || 0), 0);
+
+    // Get unique languages
+    const uniqueLanguages = new Set(tutorials.map(tutorial => tutorial.language));
     const languageCount = uniqueLanguages.size;
-    const reviewCount = uniqueReview.size;
-
-    console.log(`Total unique reviews: ${reviewCount}`); // Corrected the message
-    console.log(`Languages: ${Array.from(uniqueLanguages).join(', ')}`);
 
     return (
         <div>
             All tutors: {tutorials.length} <br />
             Languages: {languageCount} <br />
-            Reviews: {reviewCount} <br />
+            Total Reviews: {totalReviews} <br />
+            Total Users: {userCount} <br /> {/* Display user count */}
         </div>
     );
 };

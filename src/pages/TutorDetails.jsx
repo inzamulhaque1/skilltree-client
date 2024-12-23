@@ -2,6 +2,7 @@ import { useLoaderData, useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { useAuth } from "../providers/AuthProvider";
+import { useEffect, useState } from "react";
 
 const TutorDetails = () => {
   const tutor = useLoaderData();
@@ -9,46 +10,71 @@ const TutorDetails = () => {
   const { _id, name, image, language, review, description, price, email } = tutor;
 
   const { user } = useAuth();
+  const [alreadyBooked, setAlreadyBooked] = useState(false);
+
+  useEffect(() => {
+    const checkBookingStatus = async () => {
+      if (user?.email) {
+        try {
+          const response = await fetch(
+            `http://localhost:5000/bookings/check?tutorId=${_id}&userEmail=${user.email}`
+          );
+          const result = await response.json();
+          if (response.ok) {
+            setAlreadyBooked(result.alreadyBooked);
+          } else {
+            console.error(result.message || "Failed to check booking status.");
+          }
+        } catch (error) {
+          console.error("Error checking booking status:", error);
+        }
+      }
+    };
+
+    checkBookingStatus();
+  }, [_id, user?.email]);
 
   const handleBook = async () => {
     const userEmail = user.email;
 
     if (!userEmail) {
-        toast.error("You must be logged in to book a tutor.");
-        return;
+      toast.error("You must be logged in to book a tutor.");
+      return;
     }
 
     const bookingDetails = {
-        tutorId: _id,
-        name,
-        image,
-        language,
-        price,
-        email,
-        userEmail,
+      tutorId: _id,
+      name,
+      image,
+      language,
+      price,
+      email,
+      userEmail,
+      quantity: 1,
     };
 
     try {
-        const response = await fetch("http://localhost:5000/book", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(bookingDetails),
-        });
+      const response = await fetch("http://localhost:5000/book", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingDetails),
+      });
 
-        const result = await response.json();
+      const result = await response.json();
 
-        if (response.ok) {
-            toast.success("Tutor booked successfully!");
-        } else {
-            toast.error(result.message || "Failed to book tutor.");
-        }
+      if (response.ok) {
+        toast.success("Tutor booked successfully!");
+        setAlreadyBooked(true); // Update state after successful booking
+      } else {
+        toast.error(result.message || "Failed to book tutor.");
+      }
     } catch (error) {
-        toast.error("Something went wrong. Please try again.");
-        console.error(error);
+      toast.error("Something went wrong. Please try again.");
+      console.error(error);
     }
-};
+  };
 
   return (
     <div className="container mx-auto p-4">
@@ -75,12 +101,18 @@ const TutorDetails = () => {
 
         <p className="text-lg font-bold text-green-600 mt-4">Price: ${price}</p>
 
-        <button
-          onClick={handleBook}
-          className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-full shadow-lg hover:bg-blue-600"
-        >
-          Book
-        </button>
+        {alreadyBooked ? (
+          <p className="mt-6 text-lg text-red-500 font-bold">
+            You have already booked this tutor.
+          </p>
+        ) : (
+          <button
+            onClick={handleBook}
+            className="mt-6 bg-blue-500 text-white py-2 px-4 rounded-full shadow-lg hover:bg-blue-600"
+          >
+            Book
+          </button>
+        )}
       </div>
     </div>
   );
