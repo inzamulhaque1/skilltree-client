@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
 import GoogleLogin from "../components/GoogleLogin";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -9,6 +10,8 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
   const [error, setError] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [passwordStrength, setPasswordStrength] = useState("weak");
   const { signUp } = useAuth();
   const navigate = useNavigate();
 
@@ -16,53 +19,139 @@ const SignUp = () => {
     e.preventDefault();
     try {
       setError("");
-      // Pass name and photoURL along with email and password to signUp function
       await signUp(email, password, name, photoURL);
-      navigate("/"); // Redirect after signup
+      navigate("/");
     } catch (err) {
       setError(err.message);
     }
   };
 
+  const checkPasswordStrength = (password) => {
+    const length = password.length;
+    if (length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password)) {
+      setPasswordStrength("strong");
+    } else if (length >= 6) {
+      setPasswordStrength("medium");
+    } else {
+      setPasswordStrength("weak");
+    }
+  };
+
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+    if (newPassword) {
+      checkPasswordStrength(newPassword);
+    } else {
+      setPasswordStrength("weak");
+    }
+  };
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <h1 className="text-2xl font-bold">Sign Up</h1>
-        {error && <p className="text-red-500">{error}</p>}
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="border p-2 w-full"
+
+    <div className="w-9/12 mx-auto flex min-h-screen">
+      {/* Left Side Content */}
+      <div className="flex-1 flex flex-col justify-center items-start p-10">
+        <h1 className="text-4xl font-bold mb-4 text-gray-800">Create An Account!</h1>
+        <p className="text-lg text-gray-600 mb-6">
+          Create an account to learn language and stay connected with the community.
+        </p>
+        <img
+          src="https://cdni.iconscout.com/illustration/premium/thumb/sign-up-illustration-download-in-svg-png-gif-file-formats--new-user-registering-log-register-form-maggy-pack-design-development-illustrations-4097209.png?f=webp"
+          alt="Welcome Illustration"
+          className="mt-4 max-w-full rounded-lg shadow-lg"
         />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="border p-2 w-full"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="border p-2 w-full"
-        />
-        <input
-          type="text"
-          placeholder="Photo URL"
-          value={photoURL}
-          onChange={(e) => setPhotoURL(e.target.value)}
-          className="border p-2 w-full"
-        />
-        <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
-          Sign Up
-        </button>
-        <GoogleLogin></GoogleLogin>
-      </form>
+      </div>
+
+      {/* Right Side Form */}
+      <div className="flex-1 flex justify-center items-center p-10">
+        <form onSubmit={handleSubmit} className="space-y-4 w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-2">Sign Up</h2>
+          {error && <p className="text-red-500">{error}</p>}
+          <input
+            type="text"
+            placeholder="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="border p-2 w-full rounded"
+          />
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="border p-2 w-full rounded"
+          />
+          <div className="relative">
+            <input
+              type={passwordVisible ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={handlePasswordChange}
+              className={`border p-2 w-full rounded  ${
+                passwordStrength === "weak"
+                  ? ""
+                  : passwordStrength === "medium"
+                  ? "border-yellow-500"
+                  : "border-green-500"
+              }`}
+            />
+            <div
+              onClick={togglePasswordVisibility}
+              className="absolute right-3 top-3 cursor-pointer"
+            >
+              {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+            </div>
+          </div>
+          {password && (
+            <div
+              className={`text-sm ${
+                passwordStrength === "weak"
+                  ? "text-red-500"
+                  : passwordStrength === "medium"
+                  ? "text-yellow-500"
+                  : "text-green-500"
+              }`}
+            >
+              {passwordStrength === "weak"
+                ? "Weak password"
+                : passwordStrength === "medium"
+                ? "Medium strength password"
+                : "Strong password"}
+            </div>
+          )}
+          <input
+            type="text"
+            placeholder="Photo URL"
+            value={photoURL}
+            onChange={(e) => setPhotoURL(e.target.value)}
+            className="border p-2 w-full rounded"
+          />
+          <button
+            type="submit"
+            className="bg-blue-500 text-white py-2 px-4 rounded w-full"
+          >
+            Sign Up
+          </button>
+          <p className="">
+              <Link
+                to="/login"
+                className="text-green-500 hover:underline font-semibold"
+              >
+                Already an account? Login →
+              </Link>
+            </p> 
+
+          <GoogleLogin />
+        </form>
+      </div>
+
     </div>
+
   );
 };
 

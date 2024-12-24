@@ -11,8 +11,10 @@ const TutorDetails = () => {
 
   const { user } = useAuth();
   const [alreadyBooked, setAlreadyBooked] = useState(false);
-  const [updatedReviewCount, setUpdatedReviewCount] = useState(Number(reviewCount)); // Ensure it's a number
+  const [updatedReviewCount, setUpdatedReviewCount] = useState(reviewCount || 0);
+  // const [updatedReviewCount, setUpdatedReviewCount] = useState(Number(reviewCount)); 
 
+  // Check booking status when component mounts or user email changes
   useEffect(() => {
     const checkBookingStatus = async () => {
       if (user?.email) {
@@ -35,8 +37,9 @@ const TutorDetails = () => {
     checkBookingStatus();
   }, [_id, user?.email]);
 
+  // Handle booking the tutor
   const handleBook = async () => {
-    const userEmail = user.email;
+    const userEmail = user?.email;
 
     if (!userEmail) {
       toast.error("You must be logged in to book a tutor.");
@@ -77,31 +80,39 @@ const TutorDetails = () => {
     }
   };
 
+  // Handle review submission
   const handleReviewButtonClick = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/tutor/${_id}/review`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userEmail: user.email,
-        }),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        toast.success("Review submitted successfully!");
-        setUpdatedReviewCount(prevCount => prevCount + 1); // Increment review count
-      } else {
-        toast.error(result.message || "Failed to submit review.");
-      }
-    } catch (error) {
-      toast.error("Something went wrong while submitting your review.");
-      console.error(error);
+    if (!user?.email) {
+        toast.error("You must be logged in to leave a review.");
+        return;
     }
-  };
+
+    try {
+        const response = await fetch(`http://localhost:5000/tutorial/${_id}/review`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userEmail: user.email,
+                rating: 5,  // Example rating
+                comment: "Great tutor!",  // Example comment
+            }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            toast.success("Review submitted successfully!");
+            setUpdatedReviewCount(prevCount => prevCount + 1); // Increment review count on the UI
+        } else {
+            toast.error(result.message || "Failed to submit review.");
+        }
+    } catch (error) {
+        toast.error("Something went wrong while submitting your review.");
+        console.error(error);
+    }
+};
 
   return (
     <div className="container mx-auto p-4">
