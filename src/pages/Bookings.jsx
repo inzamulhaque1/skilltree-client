@@ -39,6 +39,8 @@ const Bookings = () => {
     return <div className="text-center text-gray-500">No bookings found.</div>;
   }
 
+  
+
   // Handle delete booking
   const handleDelete = (id) => {
     Swal.fire({

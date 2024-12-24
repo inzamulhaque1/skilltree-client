@@ -7,10 +7,11 @@ import { useEffect, useState } from "react";
 const TutorDetails = () => {
   const tutor = useLoaderData();
   const navigate = useNavigate();
-  const { _id, name, image, language, review, description, price, email } = tutor;
+  const { _id, name, image, language, reviewCount, description, price, email } = tutor;
 
   const { user } = useAuth();
   const [alreadyBooked, setAlreadyBooked] = useState(false);
+  const [updatedReviewCount, setUpdatedReviewCount] = useState(Number(reviewCount)); // Ensure it's a number
 
   useEffect(() => {
     const checkBookingStatus = async () => {
@@ -76,6 +77,32 @@ const TutorDetails = () => {
     }
   };
 
+  const handleReviewButtonClick = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/tutor/${_id}/review`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userEmail: user.email,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast.success("Review submitted successfully!");
+        setUpdatedReviewCount(prevCount => prevCount + 1); // Increment review count
+      } else {
+        toast.error(result.message || "Failed to submit review.");
+      }
+    } catch (error) {
+      toast.error("Something went wrong while submitting your review.");
+      console.error(error);
+    }
+  };
+
   return (
     <div className="container mx-auto p-4">
       <div className="flex flex-col items-center bg-purple-100 p-6 rounded shadow-lg relative">
@@ -95,7 +122,7 @@ const TutorDetails = () => {
 
         <h2 className="text-2xl font-bold mb-2">{name}</h2>
         <p className="text-gray-600 text-sm mb-2">Language: {language}</p>
-        <p className="text-yellow-500 text-lg mb-4">★ {review} reviews</p>
+        <p className="text-yellow-500 text-lg mb-4">★ {updatedReviewCount} reviews</p>
 
         <p className="text-gray-700 text-base text-center">{description}</p>
 
@@ -113,6 +140,15 @@ const TutorDetails = () => {
             Book
           </button>
         )}
+
+        <div className="mt-6">
+          <button
+            onClick={handleReviewButtonClick}
+            className="bg-green-500 text-white py-2 px-4 rounded-full shadow-lg hover:bg-green-600"
+          >
+            Review
+          </button>
+        </div>
       </div>
     </div>
   );

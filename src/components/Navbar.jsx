@@ -3,11 +3,9 @@ import { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
 
-
 const Navbar = ({ toggleTheme, theme }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logOut } = useAuth(); // Destructure user and logOut from useAuth
-
 
   const links = (
     <>
@@ -40,11 +38,23 @@ const Navbar = ({ toggleTheme, theme }) => {
           to="/add-tutorials"
           className={({ isActive }) =>
             isActive
-              ? "text-white font-bold bg-purple-500 py-2 px-3 rounded-r-full rounded-l-xl"
+              ? "text-white font-bold bg-purple-500 py-2 px-3 "
               : "text-purple-500 font-bold py-2 px-3 hover:text-green-500"
           }
         >
           Add Tutorials
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/my-tutorials"
+          className={({ isActive }) =>
+            isActive
+              ? "text-white font-bold bg-purple-500 py-2 px-3 "
+              : "text-purple-500 font-bold py-2 px-3 hover:text-green-500"
+          }
+        >
+          My Tutorials
         </NavLink>
       </li>
       <li>
@@ -108,20 +118,30 @@ const Navbar = ({ toggleTheme, theme }) => {
 
           {/* Avatar (Hidden on Mobile) */}
           {user && (
-            <div className="avatar hidden md:block">
+            <div className="avatar hidden md:block relative group">
               <div className="w-12 rounded-full">
                 <img
-                  src={user.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} // Use the user's profile image or fallback
+                  src={
+                    user.photoURL ||
+                    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                  } // Use the user's profile image or fallback
                   alt="Profile"
                   className="w-full h-full rounded-full object-cover"
                 />
               </div>
+              {/* Tooltip */}
+              <span className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 px-3 py-1 text-sm bg-gray-800 text-white rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50">
+                {user.displayName || "Username"}
+              </span>
             </div>
           )}
 
           {/* Conditional Login/Logout Button */}
           {!user ? (
-            <Link to="/login" className="btn bg-green-500 text-white px-4 py-2 font-bold">
+            <Link
+              to="/login"
+              className="btn bg-green-500 text-white px-4 py-2 font-bold"
+            >
               Sign In
             </Link>
           ) : (
@@ -159,9 +179,7 @@ const Navbar = ({ toggleTheme, theme }) => {
       {/* Mobile Menu */}
       {isMenuOpen && (
         <div className="lg:hidden">
-          <ul className="menu p-4 bg-base-100 text-base-content">
-            {links}
-          </ul>
+          <ul className="menu p-4 bg-base-100 text-base-content">{links}</ul>
         </div>
       )}
     </div>

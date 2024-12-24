@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
+import GoogleLogin from "../components/GoogleLogin";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -43,6 +44,7 @@ const Login = () => {
           Login
         </button>
         <p>Do not have an account? <Link to='/sign-up'> Sign up</Link> </p>
+        <GoogleLogin></GoogleLogin>
       </form>
       
     </div>

@@ -32,7 +32,7 @@ const Status = () => {
 
   // Calculate the sum of all reviews
   const totalReviews = tutorials.reduce(
-    (sum, tutorial) => sum + (tutorial.review || 0),
+    (sum, tutorial) => sum + (tutorial.reviewCount || 0),
     0
   );
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
+import GoogleLogin from "../components/GoogleLogin";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -59,6 +60,7 @@ const SignUp = () => {
         <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
           Sign Up
         </button>
+        <GoogleLogin></GoogleLogin>
       </form>
     </div>
   );

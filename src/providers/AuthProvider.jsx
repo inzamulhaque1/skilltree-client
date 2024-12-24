@@ -1,7 +1,15 @@
 /* eslint-disable react/prop-types */
 import { createContext, useContext, useState, useEffect } from "react";
 import { auth, db } from "../firebase/firebase.init"; // Adjust this import to your Firebase initialization
-import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import {
+  onAuthStateChanged,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore"; // Import Firestore functions
 
 const AuthContext = createContext();
@@ -21,28 +29,25 @@ const AuthProvider = ({ children }) => {
 
   const signUp = async (email, password, name, photoURL) => {
     try {
-      // Register user with email and password
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // Update user's profile (name and photo URL)
       await updateProfile(user, {
         displayName: name,
         photoURL: photoURL,
       });
 
-      // Add user details to Firestore
       const userRef = collection(db, "users");
       await addDoc(userRef, {
         name,
         email: user.email,
-        photoURL: photoURL || "", // Optional, handle if no photo URL is provided
-        userId: user.uid, // Store Firebase user ID
+        photoURL: photoURL || "",
+        userId: user.uid,
       });
 
       return user;
     } catch (error) {
-      throw new Error(error.message); // Handle any errors
+      throw new Error(error.message);
     }
   };
 
@@ -54,11 +59,33 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const googleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Add user details to Firestore if they don't already exist
+      const userRef = collection(db, "users");
+      await addDoc(userRef, {
+        name: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL || "",
+        userId: user.uid,
+      });
+
+      return user;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  };
+
   const value = {
     user,
     signUp,
     signIn,
     logOut,
+    googleSignIn,
     loading,
   };
 

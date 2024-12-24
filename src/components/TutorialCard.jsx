@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 const TutorialCard = ({ tutorial }) => {
-  const { _id, name, image, language, review, description } = tutorial;
+  const { _id, name, image, language, reviewCount, description } = tutorial;
 
   return (
     <div className="mx-auto p-4 bg-purple-200 shadow-lg rounded-lg mt-20 relative flex flex-col justify-between">
@@ -20,7 +20,7 @@ const TutorialCard = ({ tutorial }) => {
         <p className="text-gray-500 text-sm mt-1">{language}</p>
         <div className="flex justify-center items-center gap-1 mt-2">
           <span className="text-yellow-500 text-lg">★</span>
-          <span className="text-sm text-gray-600">{review} reviews</span>
+          <span className="text-sm text-gray-600">{reviewCount} reviews</span>
         </div>
         <p className="text-gray-700 text-sm mt-3">{description}</p>
       </div>

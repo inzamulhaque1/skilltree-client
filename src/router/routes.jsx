@@ -8,6 +8,8 @@ import Bookings from "../pages/Bookings";
 import SignUp from "../pages/SignUp";
 import Login from "../pages/Login";
 import PrivateRoute from "./PrivateRoute";
+import MyTutorials from "../pages/MyTutorials";
+import UpdateTutorial from "../pages/UpdateTutorial";
 
 const routes = createBrowserRouter([
   {
@@ -26,18 +28,29 @@ const routes = createBrowserRouter([
       },
       {
         path: "tutor/:id",
-        element: <TutorDetails />,
+        element: <PrivateRoute><TutorDetails /></PrivateRoute>,
         loader: ({ params }) =>
             fetch(`http://localhost:5000/tutorial/${params.id}`),
       },
       {
         path: "add-tutorials",
-        element: <AddTutorials />,
+        element: <PrivateRoute><AddTutorials /></PrivateRoute>,
       },
       {
-        path: "book",  // New route for viewing bookings
+        path: "my-tutorials",
+        element: <PrivateRoute><MyTutorials /></PrivateRoute>,
+        loader: () => fetch("http://localhost:5000/tutorial"),
+      },
+      {
+        path: "/update/:id" ,
+        element: <PrivateRoute><UpdateTutorial> </UpdateTutorial></PrivateRoute> ,
+        loader: ({ params }) => fetch(`http://localhost:5000/tutorial/${params.id}`)
+      },
+      {
+        path: "book",  
         element: <PrivateRoute><Bookings /></PrivateRoute>,
-        loader: () => fetch("http://localhost:5000/book"),  // Fetch bookings from the server
+        loader: () => fetch("http://localhost:5000/book"), 
+        
       },
       {
         path: "sign-up",
