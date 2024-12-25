@@ -140,7 +140,7 @@ const Navbar = ({ toggleTheme, theme }) => {
           {!user ? (
             <Link
               to="/login"
-              className="btn bg-green-500 text-white px-4 py-2 font-bold"
+              className="btn bg-purple-500 hover:bg-lime-500 text-white px-4 py-2 font-bold"
             >
               Sign In
             </Link>
