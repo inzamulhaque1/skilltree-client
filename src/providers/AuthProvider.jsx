@@ -11,6 +11,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { collection, addDoc } from "firebase/firestore"; // Import Firestore functions
+import axios from "axios";
 
 const AuthContext = createContext();
 
@@ -21,7 +22,25 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      setLoading(false);
+      console.log('state capture:' , currentUser?.email )
+      if (currentUser?.email) {
+        const user = { email: currentUser.email };
+        axios
+          .post("http://localhost:5000/jwt", user, {withCredentials: true})
+          .then((res) =>{ 
+            console.log('login token', res.data)
+            setLoading(false);
+          });
+      }
+      else {
+        axios.post("http://localhost:5000/logout", {}, {withCredentials: true})
+        .then((res) => {
+          console.log('logout', res.data)
+          setLoading(false);
+        });
+      }
+
+      
     });
 
     return () => unsubscribe();
@@ -29,7 +48,11 @@ const AuthProvider = ({ children }) => {
 
   const signUp = async (email, password, name, photoURL) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
       const user = userCredential.user;
 
       await updateProfile(user, {
@@ -89,7 +112,11 @@ const AuthProvider = ({ children }) => {
     loading,
   };
 
-  return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={value}>
+      {!loading && children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => useContext(AuthContext);

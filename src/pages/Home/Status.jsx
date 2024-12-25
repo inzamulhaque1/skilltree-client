@@ -13,13 +13,13 @@ const Status = () => {
     const fetchUserCount = async () => {
       try {
         const usersSnapshot = await getDocs(collection(db, "users"));
-        console.log("Users Snapshot:", usersSnapshot);
+        
 
         if (usersSnapshot.empty) {
           console.log("No users found.");
         } else {
           const users = usersSnapshot.docs.map((doc) => doc.data());
-          console.log("Users:", users);
+          
           setUserCount(users.length);
         }
       } catch (error) {

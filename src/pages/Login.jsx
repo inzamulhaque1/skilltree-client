@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../providers/AuthProvider";
 import GoogleLogin from "../components/GoogleLogin";
+import axios from "axios";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,15 @@ const Login = () => {
     try {
       setError("");
       await signIn(email, password);
-      navigate("/"); // Redirect after login
+      const user = {email: email}
+
+      axios.post('http://localhost:5000/jwt' , user)
+      .then(res =>{
+        console.log(res.data);
+      })
+
+
+      navigate("/"); 
     } catch (err) {
       setError(err.message);
     }
