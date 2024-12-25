@@ -28,39 +28,40 @@ const FindTutors = () => {
   });
 
   return (
-    <div className="dark:bg-gray-800 dark:text-white relative w-9/12 mx-auto">
-      <h2 className="text-3xl font-bold text-center mb-6">Find Tutors</h2>
+    <div className="dark:bg-purple-800 dark:text-white ">
+      <div className="relative w-9/12 mx-auto">
+        <h2 className="text-3xl font-bold text-center mb-6">Find Tutors</h2>
 
-      {/* Language Search Input */}
-      <div className="flex justify-between mb-8">
-      <div>
+        {/* Language Search Input */}
+        <div className="flex justify-between mb-8">
+          <div>
             <p className="text-center text-lg mb-4">
               {selectedLanguage
                 ? `Showing results for language: ${selectedLanguage}`
                 : "Showing all tutors"}
             </p>
           </div>
-        <div className="relative w-1/4">
-          
-          <input
-            type="text"
-            placeholder="Search by language"
-            className="w-full  p-4 pl-10 pr-4 bg-gray-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300 shadow-md hover:shadow-lg"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          {/* Search Icon */}
-          <FaSearch
-            className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500"
-            size={20}
-          />
+          <div className="relative w-1/4">
+            <input
+              type="text"
+              placeholder="Search by language"
+              className="w-full  p-4 pl-10 pr-4 bg-gray-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300 shadow-md hover:shadow-lg"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            {/* Search Icon */}
+            <FaSearch
+              className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500"
+              size={20}
+            />
+          </div>
         </div>
-      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        {filteredTutorials.map((tutorial) => (
-          <TutorialCard key={tutorial._id} tutorial={tutorial} />
-        ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {filteredTutorials.map((tutorial) => (
+            <TutorialCard key={tutorial._id} tutorial={tutorial} />
+          ))}
+        </div>
       </div>
     </div>
   );

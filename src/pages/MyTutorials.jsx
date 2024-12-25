@@ -47,14 +47,14 @@ const MyTutorials = () => {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100 dark:bg-gray-900 dark:text-white">
+    <div className="min-h-screen p-6 bg-gray-100 dark:bg-purple-900 dark:text-white">
       <h1 className="text-2xl font-bold mb-4">My Tutorials</h1>
       <p>Total Tutorials: {tutorials.length}</p>
 
       <div className="overflow-x-auto">
         <table className="table w-full border border-gray-300">
           <thead>
-            <tr className="bg-gray-200 dark:bg-gray-700">
+            <tr className="bg-gray-200 dark:bg-gray-200">
               <th>Image</th>
               <th>Name</th>
               <th>Language</th>

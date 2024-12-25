@@ -19,7 +19,7 @@ const AddTutorials = () => {
 
     console.log(newTutorials);
 
-    fetch('https://assignment11-server-lime.vercel.app/tutorial', {
+    fetch('http://localhost:5000/tutorial', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -48,8 +48,8 @@ const AddTutorials = () => {
 
 
   return (
-    <div className="dark:bg-gray-800 dark:text-white min-h-screen flex justify-center items-center">
-      <div className="w-full max-w-md bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg">
+    <div className="dark:bg-purple-800 dark:text-white min-h-screen flex justify-center items-center">
+      <div className="w-full max-w-md bg-white dark:bg-purple-700 p-6 rounded-lg shadow-lg">
         <h1 className="text-2xl font-bold mb-6 text-center dark:text-white">
           Add New Tutorial
         </h1>
@@ -63,7 +63,7 @@ const AddTutorials = () => {
               id="name"
               name="name"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
             />
           </div>
           <div>
@@ -75,7 +75,7 @@ const AddTutorials = () => {
               id="email"
               name="email"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
             />
           </div>
           <div>
@@ -87,7 +87,7 @@ const AddTutorials = () => {
               id="image"
               name="image"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
             />
           </div>
           <div>
@@ -98,7 +98,7 @@ const AddTutorials = () => {
     id="language"
     name="language"
     required
-    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
   >
     <option value="" disabled selected>
       Select Language
@@ -123,7 +123,7 @@ const AddTutorials = () => {
               id="price"
               name="price"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
             />
           </div>
           <div>
@@ -134,7 +134,7 @@ const AddTutorials = () => {
               id="description"
               name="description"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700"
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
             ></textarea>
           </div>
           <button

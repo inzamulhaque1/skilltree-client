@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { ToastContainer } from "react-toastify";
+import Footer from "../components/Footer";
 
 const MainLayout = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
@@ -23,6 +24,7 @@ const MainLayout = () => {
     <div>
       <Navbar toggleTheme={toggleTheme} theme={theme} />
       <Outlet context={{ theme, toggleTheme }} />
+      <Footer></Footer>
 
       <ToastContainer />
     </div>
