@@ -19,7 +19,7 @@ const AddTutorials = () => {
 
     console.log(newTutorials);
 
-    fetch('http://localhost:5000/tutorial', {
+    fetch('https://assignment11-server-lime.vercel.app/tutorial', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
