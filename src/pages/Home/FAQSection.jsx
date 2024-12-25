@@ -4,7 +4,7 @@ import { GoChevronDown } from "react-icons/go"; // Using GoChevronDown for the a
 
 const FAQSection = () => {
   return (
-    <div className="bg-gray-50 dark:bg-gray-900 py-10">
+    <div className="bg-gray-50 dark:bg-purple-900 py-10">
       <div className="max-w-4xl mx-auto px-6">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-800 dark:text-white mb-8">
           Frequently Asked Questions

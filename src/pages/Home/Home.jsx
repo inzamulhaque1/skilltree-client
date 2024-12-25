@@ -5,6 +5,7 @@ import LanguageCategory from "../../components/LanguageCategory";
 import Testimonials from "./Testimonials";
 import FAQSection from "./FAQSection";
 import InteractiveTools from "./InteractiveTools";
+import PricingPlans from "./PricingPlans";
 
 const Home = () => {
   const { theme } = useOutletContext();
@@ -14,6 +15,7 @@ const Home = () => {
       <Banner theme={theme} />
       <LanguageCategory></LanguageCategory>
       <Status></Status>
+      <PricingPlans></PricingPlans>
       <Testimonials></Testimonials>
       <InteractiveTools></InteractiveTools>
       <FAQSection></FAQSection>

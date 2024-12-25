@@ -1,6 +1,6 @@
 const InteractiveTools = () => {
   return (
-    <section className="p-8 bg-blue-100 text-gray-800 dark:bg-gray-900 dark:text-white transition duration-300">
+    <section className="p-8 bg-blue-100 text-gray-800 dark:bg-purple-800 dark:text-white transition duration-300">
       <h2 className="text-3xl font-bold text-center mb-4 text-blue-800 dark:text-blue-400">
         Boost Your Skills
       </h2>
