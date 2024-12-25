@@ -7,7 +7,7 @@ const LanguageCategory = () => {
 
   // Fetch data from the backend
   useEffect(() => {
-    fetch("http://localhost:5000/tutorial")
+    fetch("https://assignment11-server-lime.vercel.app/tutorial")
       .then((response) => response.json())
       .then((data) => {
         // Extract unique languages

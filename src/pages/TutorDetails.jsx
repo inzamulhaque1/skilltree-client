@@ -20,7 +20,7 @@ const TutorDetails = () => {
       if (user?.email) {
         try {
           const response = await fetch(
-            `http://localhost:5000/bookings/check?tutorId=${_id}&userEmail=${user.email}`
+            `https://assignment11-server-lime.vercel.app/bookings/check?tutorId=${_id}&userEmail=${user.email}`
           );
           const result = await response.json();
           if (response.ok) {
@@ -58,7 +58,7 @@ const TutorDetails = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:5000/book", {
+      const response = await fetch("https://assignment11-server-lime.vercel.app/book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const TutorDetails = () => {
     }
 
     try {
-        const response = await fetch(`http://localhost:5000/tutorial/${_id}/review`, {
+        const response = await fetch(`https://assignment11-server-lime.vercel.app/tutorial/${_id}/review`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

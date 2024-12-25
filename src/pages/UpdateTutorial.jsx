@@ -18,7 +18,7 @@ const UpdateTutorial = () => {
   
     const updatedTutorial = { name, email, image, language, price, description };
   
-    fetch(`http://localhost:5000/tutorial/${tutorial._id}`, {
+    fetch(`https://assignment11-server-lime.vercel.app/tutorial/${tutorial._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

@@ -18,7 +18,7 @@ const Login = () => {
       await signIn(email, password);
       const user = {email: email}
 
-      axios.post('http://localhost:5000/jwt' , user)
+      axios.post('https://assignment11-server-lime.vercel.app/jwt' , user)
       .then(res =>{
         console.log(res.data);
       })

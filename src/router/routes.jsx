@@ -19,18 +19,18 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => fetch("http://localhost:5000/tutorial"),
+        loader: () => fetch("https://assignment11-server-lime.vercel.app/tutorial"),
       },
       {
         path: "find-tutors",
         element: <FindTutors />,
-        loader: () => fetch("http://localhost:5000/tutorial"),
+        loader: () => fetch("https://assignment11-server-lime.vercel.app/tutorial"),
       },
       {
         path: "tutor/:id",
         element: <PrivateRoute><TutorDetails /></PrivateRoute>,
         loader: ({ params }) =>
-            fetch(`http://localhost:5000/tutorial/${params.id}`),
+            fetch(`https://assignment11-server-lime.vercel.app/tutorial/${params.id}`),
       },
       {
         path: "add-tutorials",
@@ -39,17 +39,17 @@ const routes = createBrowserRouter([
       {
         path: "my-tutorials",
         element: <PrivateRoute><MyTutorials /></PrivateRoute>,
-        loader: () => fetch("http://localhost:5000/tutorial"),
+        loader: () => fetch("https://assignment11-server-lime.vercel.app/tutorial"),
       },
       {
         path: "/update/:id" ,
         element: <PrivateRoute><UpdateTutorial> </UpdateTutorial></PrivateRoute> ,
-        loader: ({ params }) => fetch(`http://localhost:5000/tutorial/${params.id}`)
+        loader: ({ params }) => fetch(`https://assignment11-server-lime.vercel.app/tutorial/${params.id}`)
       },
       {
         path: "book",  
         element: <PrivateRoute><Bookings /></PrivateRoute>,
-        loader: () => fetch("http://localhost:5000/book"), 
+        loader: () => fetch("https://assignment11-server-lime.vercel.app/book"), 
         
       },
       {

@@ -10,7 +10,7 @@ const Bookings = () => {
 
   // Fetch all bookings on component mount
   useEffect(() => {
-    fetch("http://localhost:5000/book")
+    fetch("https://assignment11-server-lime.vercel.app/book")
       .then((response) => response.json())
       .then((data) => {
         // Initialize review count to 0 if it doesn't exist
@@ -53,7 +53,7 @@ const Bookings = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/book/${id}`, {
+        fetch(`https://assignment11-server-lime.vercel.app/book/${id}`, {
           method: "DELETE",
         })
           .then((response) => response.json())
@@ -88,7 +88,7 @@ const Bookings = () => {
     setBookings(updatedBookings);
 
     // Send the updated review count to the backend
-    fetch(`http://localhost:5000/book/${id}`, {
+    fetch(`https://assignment11-server-lime.vercel.app/book/${id}`, {
         method: "PATCH", // Use PATCH to update the review count
         headers: {
             "Content-Type": "application/json",

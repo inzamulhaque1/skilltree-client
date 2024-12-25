@@ -21,7 +21,7 @@ const MyTutorials = () => {
     if (!result.isConfirmed) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/tutorial/${id}`, {
+      const response = await fetch(`https://assignment11-server-lime.vercel.app/tutorial/${id}`, {
         method: "DELETE",
       });
 
