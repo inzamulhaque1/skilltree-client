@@ -1,109 +1,122 @@
-# Assignment11
-assignment_category_14
-Live URL: https://skilltree-e5057.web.app/
-Live URL: https://skilltree-e5057.firebaseapp.com/
+# SkillTree
 
-# SkillTree  
+Welcome to **SkillTree**, your gateway to learning multiple languages and gaining new skills. SkillTree connects learners with expert tutors and provides interactive learning tools to help you reach your full potential.
 
-Welcome to **SkillTree** – your gateway to learning multiple languages and gaining new skills. We connect learners with expert tutors and provide interactive learning tools to help you reach your full potential.  
+---
 
-Explore, learn, and grow with SkillTree – because life never stops teaching. 🌱  
+## ✨ Live Demo
+Explore SkillTree live:
+- [Primary Live Site](https://skilltree-e5057.web.app/)
+- [Alternative Live Site](https://skilltree-e5057.firebaseapp.com/)
 
-## Live Demo  
+---
 
-Visit SkillTree here:  
-- [SkillTree Live Site](https://skilltree-e5057.web.app)  
+## 📸 Project Screenshots
+![SkillTree Screenshot 1](skilltree1.png)
+![SkillTree Screenshot 2](skilltree2.png)
+![SkillTree Screenshot 3](skilltree3.png)
+![SkillTree Screenshot 4](skilltree4.png)
+![SkillTree Screenshot 5](skilltree5.png)
 
-## Features  
+---
 
-SkillTree offers a wide range of features to enhance your learning journey:  
+## 🌱 Features
+- **Find Tutors:** Connect with expert tutors across various languages.
+- **Add Tutorials:** Share knowledge by adding and managing your tutorials.
+- **My Tutorials:** View and manage the tutorials you have created.
+- **My Bookings:** Track your learning sessions and appointments with tutors.
+- **Language Categories:** Choose from popular languages like Chinese, Arabic, Portuguese, German, English, French, Japanese, and more.
+- **Affordable Plans:** Flexible subscription plans (Basic, Pro, and Premium) to suit your learning goals.
+- **Interactive Tools:** Quizzes, flashcards, and language games for a fun learning experience.
+- **User Reviews:** Get insights from our vibrant learning community through honest reviews.
 
-- **Find Tutors:** Connect with expert tutors across various languages.  
-- **Add Tutorials:** Share knowledge by adding and managing your tutorials.  
-- **My Tutorials:** View and manage the tutorials you have created.  
-- **My Bookings:** Track your learning sessions and appointments with tutors.  
-- **Language Categories:** Choose from popular languages like Chinese, Arabic, Portuguese, German, English, French, Japanese, and more.  
-- **Affordable Plans:** Pick from flexible subscription plans (Basic, Pro, and Premium) to suit your learning goals.  
-- **Interactive Tools:** Enjoy quizzes, flashcards, and language games for a fun learning experience.  
-- **User Reviews:** Get insights from our vibrant learning community through honest reviews.  
+---
 
-## Tech Stack  
+## 🔧 Tech Stack
+### Frontend
+- **React.js:** Building an interactive and dynamic user interface.
+- **Tailwind CSS:** Creating a responsive and elegant design effortlessly.
+- **Axios:** Handling HTTP requests efficiently.
 
-SkillTree uses a modern, reliable, and scalable tech stack to provide a seamless user experience:  
+### Backend
+- **Node.js & Express.js:** Powering server-side logic and API development.
+- **MongoDB:** Managing and storing structured and flexible data.
+- **CORS:** Enabling secure cross-origin resource sharing.
 
-**Frontend:**  
-- **React.js:** Building an interactive and dynamic user interface.  
-- **Tailwind CSS:** Creating a responsive and elegant design effortlessly.  
-- **Axios:** Handling HTTP requests efficiently.  
+---
 
-**Backend:**  
-- **Node.js & Express.js:** Powering server-side logic and API development.  
-- **MongoDB:** Managing and storing structured and flexible data.  
-- **CORS:** Enabling secure cross-origin resource sharing.  
+## 🔄 Installation
+### Prerequisites
+Ensure you have the following installed:
+- [Node.js](https://nodejs.org/) (v14 or later)
 
-## Getting Started  
-
-### Prerequisites  
-
-1. Install **Node.js** and **npm** (Node Package Manager).  
-2. Clone the repository:  
-   ```bash
-   git clone https://github.com/your-username/SkillTree.git
-   ```  
-
-3. Navigate to the project directory:  
-   ```bash
-   cd SkillTree
-   ```  
-
-### Install Dependencies  
-
-**Frontend:**  
+### Setup
+#### Clone the Repositories
 ```bash
-cd client
-npm install
-```  
+# Client
+git clone https://github.com/your-username/SkillTree.git
+cd SkillTree
+```
 
-**Backend:**  
+#### Install Dependencies
 ```bash
-cd server
+# For Client
 npm install
-```  
+```
 
-### Running the Project  
+#### Environment Variables
+Create a `.env` file in the project directory and add your environment variables.
 
-1. Start the **Backend Server:**  
-   ```bash
-   npm start
-   ```  
+#### Run the Project
+```bash
+# Start the client
+npm run dev
+```
 
-2. Start the **Frontend Client:**  
-   ```bash
-   cd client
-   npm start
-   ```  
+Access the app at [http://localhost:3000](http://localhost:3000) in your browser.
 
-Access the app at `http://localhost:3000` in your browser.  
+---
 
-## Contributing  
+## 💻 Available Scripts
+- **`npm run dev`**: Start the development server.
+- **`npm run build`**: Build the project for production.
+- **`npm run preview`**: Preview the built project.
+- **`npm run lint`**: Lint the project for code quality.
 
-We welcome contributions! Follow these steps:  
+---
 
-1. Fork the repository.  
-2. Create a new branch (`git checkout -b feature-name`).  
-3. Commit your changes (`git commit -m "Add feature"`).  
-4. Push to the branch (`git push origin feature-name`).  
-5. Open a pull request.  
+## 🔒 Security
+- Secure user sessions with Firebase Authentication.
+- CORS policies protect API requests.
 
-## Contact  
+---
 
-Have questions or suggestions? Get in touch:  
-- GitHub: [@inzamulhaque1](https://github.com/inzamulhaque1)  
-- Email: [inzamulhaque1002@gmail.com](mailto:inzamulhaque1002@gmail.com)  
+## ✨ Dependencies
+- **@radix-ui/react-accordion:** ^1.2.2
+- **@shadcn/ui:** ^0.0.4
+- **axios:** ^1.7.9
+- **firebase:** ^11.1.0
+- **localforage:** ^1.10.0
+- **motion:** ^11.15.0
+- **react:** ^18.3.1
+- **react-dom:** ^18.3.1
+- **react-router-dom:** ^7.1.0
+- **react-toastify:** ^11.0.2
+- **sort-by:** ^0.0.2
+- **sweetalert2:** ^11.15.3
 
----  
+### Development Dependencies
+- **@eslint/js:** ^9.17.0
+- **@vitejs/plugin-react:** ^4.3.4
+- **daisyui:** ^4.12.22
+- **eslint:** ^9.17.0
+- **tailwindcss:** ^3.4.17
+- **vite:** ^6.0.3
 
-Thank you for exploring **SkillTree**. Start your journey of learning and achievement today! 🌍  
+---
 
+## 📊 Resources
+- **[Client GitHub Repository](https://github.com/your-username/SkillTree)**
 
+Start your journey of learning and achievement today with **SkillTree**! 🌱
 
