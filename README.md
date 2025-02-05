@@ -13,10 +13,12 @@ Explore SkillTree live:
 
 ## 📸 Project Screenshots
 ![SkillTree Screenshot 1](https://github.com/inzamulhaque1/skilltree-client/blob/main/src/assets/skillttree1.png)
-![SkillTree Screenshot 2](skilltree2.png)
-![SkillTree Screenshot 3](skilltree3.png)
-![SkillTree Screenshot 4](skilltree4.png)
-![SkillTree Screenshot 5](skilltree5.png)
+![SkillTree Screenshot 2](https://github.com/inzamulhaque1/skilltree-client/blob/main/src/assets/skillttree2.png)
+![SkillTree Screenshot 3](https://github.com/inzamulhaque1/skilltree-client/blob/main/src/assets/skillttree3.png)
+![SkillTree Screenshot 4](https://github.com/inzamulhaque1/skilltree-client/blob/main/src/assets/skillttree4.png)
+![SkillTree Screenshot 5](https://github.com/inzamulhaque1/skilltree-client/blob/main/src/assets/skillttree5.png)
+![SkillTree Screenshot 6](https://github.com/inzamulhaque1/skilltree-client/blob/main/src/assets/skillttree6.png)
+
 
 ---
 
