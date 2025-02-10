@@ -14,8 +14,8 @@ const Navbar = ({ toggleTheme, theme }) => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "text-white font-bold bg-purple-500 py-2 px-2 rounded-l-full rounded-r-xl"
-              : "text-purple-500 font-bold py-2 px-3 hover:text-green-500"
+              ? "text-white font-bold bg-purple-500 roboto py-2 px-2 rounded-l-full rounded-r-xl"
+              : "text-purple-500 font-bold py-2 px-3 dark:text-white hover:text-green-500"
           }
         >
           Home
@@ -27,7 +27,7 @@ const Navbar = ({ toggleTheme, theme }) => {
           className={({ isActive }) =>
             isActive
               ? "text-white font-bold bg-purple-500 py-2 px-3 rounded-xl"
-              : "text-purple-500 font-bold py-2 px-3 hover:text-green-500"
+              : "text-purple-500 font-bold py-2 px-3 dark:text-white hover:text-green-500"
           }
         >
           Find Tutors
@@ -39,7 +39,7 @@ const Navbar = ({ toggleTheme, theme }) => {
           className={({ isActive }) =>
             isActive
               ? "text-white font-bold bg-purple-500 py-2 px-3 "
-              : "text-purple-500 font-bold py-2 px-3 hover:text-green-500"
+              : "text-purple-500 font-bold py-2 px-3 dark:text-white hover:text-green-500"
           }
         >
           Add Tutorials
@@ -51,7 +51,7 @@ const Navbar = ({ toggleTheme, theme }) => {
           className={({ isActive }) =>
             isActive
               ? "text-white font-bold bg-purple-500 py-2 px-3 "
-              : "text-purple-500 font-bold py-2 px-3 hover:text-green-500"
+              : "text-purple-500 font-bold py-2 px-3 dark:text-white hover:text-green-500"
           }
         >
           My Tutorials
@@ -62,8 +62,8 @@ const Navbar = ({ toggleTheme, theme }) => {
           to="/book"
           className={({ isActive }) =>
             isActive
-              ? "text-white font-bold bg-purple-500 py-2 px-3 rounded-r-full rounded-l-xl"
-              : "text-purple-500 font-bold py-2 px-3 hover:text-green-500"
+              ? "text-white font-bold bg-purple-500  py-2 px-3 rounded-r-full rounded-l-xl"
+              : "text-purple-500 font-bold py-2 px-3 dark:text-white hover:text-green-500"
           }
         >
           My Bookings
@@ -73,7 +73,7 @@ const Navbar = ({ toggleTheme, theme }) => {
   );
 
   return (
-    <div className="bg-white/70 dark:bg-[#0B0716]/70 backdrop-blur-md sticky top-0 z-50 ">
+    <div className="bg-white/70 roboto dark:bg-[#0B0716] backdrop-blur-md sticky top-0 z-50 ">
       <div className="navbar w-11/12 md:w-9/12 mx-auto py-3 flex items-center">
         {/* Left Section */}
         <div className="navbar-start flex items-center">
@@ -84,7 +84,7 @@ const Navbar = ({ toggleTheme, theme }) => {
 
         {/* Center Section */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu-horizontal border border-purple-600 px-1 py-2 rounded-full gap-3">
+          <ul className="menu-horizontal border border-purple-600 dark:border-white   px-1 py-2 rounded-full gap-3">
             {links}
           </ul>
         </div>
@@ -140,14 +140,14 @@ const Navbar = ({ toggleTheme, theme }) => {
           {!user ? (
             <Link
               to="/login"
-              className="btn bg-purple-500 hover:bg-lime-500 text-white px-4 py-2 font-bold"
+              className="btn bg-purple-500 libre hover:bg-lime-500 text-white px-4 py-2 font-bold"
             >
               Sign In
             </Link>
           ) : (
             <button
               onClick={logOut}
-              className="btn bg-red-500 text-white px-4 py-2 font-bold hover:bg-lime-500"
+              className="btn bg-red-500 libre text-white px-4 py-2 font-bold hover:bg-lime-500"
             >
               Sign Out
             </button>
