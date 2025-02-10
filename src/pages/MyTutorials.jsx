@@ -1,6 +1,9 @@
 import { Link, useLoaderData } from "react-router-dom";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { FaEye } from "react-icons/fa";
+import { CiEdit } from "react-icons/ci";
+import { FaDeleteLeft } from "react-icons/fa6";
 
 const MyTutorials = () => {
   const loadedTutorials = useLoaderData();
@@ -21,9 +24,12 @@ const MyTutorials = () => {
     if (!result.isConfirmed) return;
 
     try {
-      const response = await fetch(`https://assignment11-server-lime.vercel.app/tutorial/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `https://assignment11-server-lime.vercel.app/tutorial/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
 
       if (response.ok) {
         setTutorials(tutorials.filter((tutorial) => tutorial._id !== id));
@@ -85,16 +91,20 @@ const MyTutorials = () => {
 
                 <td>
                   <button className="btn btn-ghost btn-xs">
-                    <Link to={`/tutor/${tutorial._id}`}>View Details</Link>
+                    <Link to={`/tutor/${tutorial._id}`}>
+                      <FaEye />{" "}
+                    </Link>
                   </button>
                   <button className="btn btn-ghost btn-xs">
-                    <Link to={`/update/${tutorial._id}`}>Update</Link>
+                    <Link to={`/update/${tutorial._id}`}>
+                      <CiEdit />
+                    </Link>
                   </button>
                   <button
                     className="btn btn-ghost btn-xs"
                     onClick={() => handleDelete(tutorial._id)}
                   >
-                    Delete
+                    <FaDeleteLeft />
                   </button>
                 </td>
               </tr>

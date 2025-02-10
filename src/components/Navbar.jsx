@@ -73,8 +73,8 @@ const Navbar = ({ toggleTheme, theme }) => {
   );
 
   return (
-    <div className="bg-white dark:bg-[#0B0716]">
-      <div className="navbar w-11/12 md:w-9/12 mx-auto mt-3 flex items-center">
+    <div className="bg-white/70 dark:bg-[#0B0716]/70 backdrop-blur-md sticky top-0 z-50 ">
+      <div className="navbar w-11/12 md:w-9/12 mx-auto py-3 flex items-center">
         {/* Left Section */}
         <div className="navbar-start flex items-center">
           <Link to="/" className="text-purple-500 font-josefin text-xl">
@@ -147,7 +147,7 @@ const Navbar = ({ toggleTheme, theme }) => {
           ) : (
             <button
               onClick={logOut}
-              className="btn bg-red-500 text-white px-4 py-2 font-bold"
+              className="btn bg-red-500 text-white px-4 py-2 font-bold hover:bg-lime-500"
             >
               Sign Out
             </button>

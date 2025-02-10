@@ -30,7 +30,7 @@ const Banner = ({ theme }) => {
                 ease: easeOut,
                 repeat: Infinity,
               }}
-              className="text-3xl text-purple-500 md:text-5xl font-bold mb-4 dark:text-white"
+              className="text-3xl font-josefin text-purple-500 md:text-5xl font-bold mb-4 dark:text-white"
             >
               Never Stop
               <motion.span
@@ -50,11 +50,13 @@ const Banner = ({ theme }) => {
               </motion.span>{" "}
               <br /> Life Never Stop Teaching
             </motion.h1>
-            <p className="text-sm md:text-lg  mb-6">
-              Welcome to skillTree website, here you can learn multiple languages and gain more knowledge about your abilites.
+            <p className="text-sm md:text-lg  mb-6 roboto">
+              Welcome to skillTree website, here you can learn multiple
+              languages and gain more knowledge about your abilites.
             </p>
-            <button className="px-6 py-3 bg-purple-500 hover:bg-blue-600 text-white font-semibold rounded-lg">
-              Get Started
+            <button className="relative px-6 py-3 bg-purple-500 text-white font-semibold rounded-lg overflow-hidden group">
+              <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-500 transform -translate-x-full transition-transform duration-500 group-hover:translate-x-0 group-hover:m-1 group-hover:rounded-md group-hover:duration-300"></span>
+              <span className="relative roboto z-10">Get Started</span>
             </button>
           </motion.div>
           {/* Right Section */}

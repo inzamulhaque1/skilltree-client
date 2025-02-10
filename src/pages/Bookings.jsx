@@ -36,7 +36,7 @@ const Bookings = () => {
   }
 
   if (bookings.length === 0) {
-    return <div className="text-center text-gray-500">No bookings found.</div>;
+    return <div className="text-center min-h-[calc(100vh-380px)] text-gray-500">No bookings found.</div>;
   }
 
   // Handle delete booking
