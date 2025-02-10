@@ -10,7 +10,7 @@ const Navbar = ({ toggleTheme, theme }) => {
   const links = (
     <>
       <li>
-        <NavLink
+        <NavLink 
           to="/"
           className={({ isActive }) =>
             isActive
@@ -155,7 +155,7 @@ const Navbar = ({ toggleTheme, theme }) => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden"
+            className="lg:hidden "
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <svg
@@ -178,8 +178,8 @@ const Navbar = ({ toggleTheme, theme }) => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden">
-          <ul className="menu p-4 bg-base-100 text-base-content">{links}</ul>
+        <div className="lg:hidden ">
+          <ul className="menu p-4 dark:bg-black bg-base-100 text-base-content" onClick={() => setIsMenuOpen(!isMenuOpen)} >{links}</ul>
         </div>
       )}
     </div>
