@@ -20,7 +20,7 @@ const LanguageCategory = () => {
   }, []);
 
   return (
-    <div className="bg-gray-50 dark:bg-[#0B0716] roboto py-10 md:py-20">
+    <div className="bg-gray-50 dark:bg-[#0B0716] roboto py-10 md:py-24">
       <div className="w-11/12 lg:w-8/12 mx-auto">
         {/* Page Heading */}
         <h2 className="text-3xl font-bold font-josefin text-green-500 dark:text-white text-center mb-2">
