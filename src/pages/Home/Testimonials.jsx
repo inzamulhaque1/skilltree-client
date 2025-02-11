@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 
 const Testimonials = () => {
@@ -61,7 +60,7 @@ const Testimonials = () => {
   };
 
   return (
-    <section className="dark:bg-[#0B0716] roboto py-16">
+    <section className="dark:bg-[#0B0716] bg-gray-50 roboto py-16">
       <div className="container mx-auto px-6 lg:px-12 text-center">
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
@@ -84,15 +83,15 @@ const Testimonials = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8  "
         >
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
-              className="bg-white dark:bg-[#1C1B23] rounded-lg shadow-lg p-6 hover:shadow-2xl transition duration-300 transform hover:scale-105"
+              className="bg-white dark:bg-[#1C1B23]  rounded-lg shadow-lg p-6 hover:shadow-2xl transition duration-300 transform hover:scale-105"
             >
-              <div className="flex flex-col items-center">
+              <div className="flex flex-col  items-center">
                 <img
                   src={testimonial.photo}
                   alt={testimonial.name}
