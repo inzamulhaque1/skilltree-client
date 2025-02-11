@@ -53,64 +53,72 @@ const MyTutorials = () => {
   };
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100 dark:bg-purple-900 dark:text-white">
-      <h1 className="text-2xl font-bold mb-4">My Tutorials</h1>
-      <p>Total Tutorials: {tutorials.length}</p>
+    <div className="bg-gray-100 dark:bg-[#0B0716]">
+      <div className="min-h-screen p-6 max-w-7xl mx-auto bg-gray-100 dark:bg-[#0B0716] dark:text-gray-200">
+        {/* Heading and Subheading */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-semibold text-gray-900 dark:text-white">
+            My Tutorials
+          </h1>
+          <p className="text-xl text-gray-700 dark:text-gray-300 mt-2">
+            Total Tutorials: {tutorials.length}
+          </p>
+        </div>
 
-      <div className="overflow-x-auto">
-        <table className="table w-full border border-gray-300">
-          <thead>
-            <tr className="bg-gray-200 dark:bg-gray-200">
-              <th>Image</th>
-              <th>Name</th>
-              <th>Language</th>
-              <th>Price</th>
-              <th>Review</th>
-              <th>Description</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tutorials.map((tutorial) => (
-              <tr
-                key={tutorial._id}
-                className="hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                <td>
-                  <div className="avatar">
-                    <div className="mask mask-squircle w-12 h-12">
-                      <img src={tutorial.image} alt={tutorial.name} />
-                    </div>
-                  </div>
-                </td>
-                <td>{tutorial.name}</td>
-                <td>{tutorial.language}</td>
-                <td>{tutorial.price}</td>
-                <td>{tutorial.reviewCount}</td>
-                <td>{tutorial.description}</td>
-
-                <td>
-                  <button className="btn btn-ghost btn-xs">
-                    <Link to={`/tutor/${tutorial._id}`}>
-                      <FaEye />{" "}
-                    </Link>
-                  </button>
-                  <button className="btn btn-ghost btn-xs">
-                    <Link to={`/update/${tutorial._id}`}>
-                      <CiEdit />
-                    </Link>
-                  </button>
-                  <button
-                    className="btn btn-ghost btn-xs"
-                    onClick={() => handleDelete(tutorial._id)}
-                  >
-                    <FaDeleteLeft />
-                  </button>
-                </td>
+        {/* Table */}
+        <div className="overflow-x-auto">
+          <table className="table w-full border border-gray-300 dark:border-gray-500">
+            <thead>
+              <tr className="bg-gray-200 dark:bg-gray-700">
+                <th className="text-center text-gray-900 dark:text-gray-200">Image</th>
+                <th className="text-center text-gray-900 dark:text-gray-200">Name</th>
+                <th className="text-center text-gray-900 dark:text-gray-200">Language</th>
+                <th className="text-center text-gray-900 dark:text-gray-200">Price</th>
+                <th className="text-center text-gray-900 dark:text-gray-200">Review</th>
+                <th className="text-center text-gray-900 dark:text-gray-200">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {tutorials.map((tutorial) => (
+                <tr
+                  key={tutorial._id}
+                  className="hover:bg-gray-100 dark:hover:bg-gray-800"
+                >
+                  <td className="text-center">
+                    <div className="avatar">
+                      <div className="mask mask-squircle w-12 h-12 mx-auto">
+                        <img src={tutorial.image} alt={tutorial.name} />
+                      </div>
+                    </div>
+                  </td>
+                  <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.name}</td>
+                  <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.language}</td>
+                  <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.price}</td>
+                  <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.reviewCount}</td>
+
+                  <td className="text-center space-x-2 flex justify-center items-center">
+                    <button className="btn btn-ghost btn-xs text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                      <Link to={`/tutor/${tutorial._id}`}>
+                        <FaEye />{" "}
+                      </Link>
+                    </button>
+                    <button className="btn btn-ghost btn-xs text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                      <Link to={`/update/${tutorial._id}`}>
+                        <CiEdit />
+                      </Link>
+                    </button>
+                    <button
+                      className="btn btn-ghost btn-xs text-red-500 dark:text-red-400 hover:text-white"
+                      onClick={() => handleDelete(tutorial._id)}
+                    >
+                      <FaDeleteLeft />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

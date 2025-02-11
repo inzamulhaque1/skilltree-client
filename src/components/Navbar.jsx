@@ -26,7 +26,7 @@ const Navbar = ({ toggleTheme, theme }) => {
           to="/find-tutors"
           className={({ isActive }) =>
             isActive
-              ? "text-white font-bold bg-purple-500 py-2 px-3 rounded-xl"
+              ? "text-white font-bold bg-purple-500 py-2 px-3 rounded-xl "
               : "text-purple-500 font-bold py-2 px-3 dark:text-white hover:text-green-500"
           }
         >

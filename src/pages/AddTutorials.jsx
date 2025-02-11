@@ -2,7 +2,6 @@ import Swal from "sweetalert2";
 
 const AddTutorials = () => {
 
-
   const handleAddTutorials = (e) => {
     e.preventDefault();
 
@@ -15,7 +14,7 @@ const AddTutorials = () => {
     const price = form.price.value;
     const description = form.description.value;
 
-    const newTutorials = {name, email, image, language, price, description}
+    const newTutorials = {name, email, image, language, price, description};
 
     console.log(newTutorials);
 
@@ -37,25 +36,17 @@ const AddTutorials = () => {
             });
           }
     })
-
-
-
-
-
-
   };
 
-
-
   return (
-    <div className="dark:bg-purple-800 dark:text-white min-h-screen flex justify-center items-center">
-      <div className="w-full max-w-md bg-white dark:bg-purple-700 p-6 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-6 text-center dark:text-white">
+    <div className="dark:bg-[#0B0716]  dark:text-white min-h-screen flex justify-center items-center px-2 py-6">
+      <div className="w-full max-w-lg  bg-white dark:bg-[#1E1A2F] p-4  rounded-xl shadow-xl transform  transition-all duration-300">
+        <h1 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">
           Add New Tutorial
         </h1>
-        <form onSubmit={handleAddTutorials} className="space-y-4">
+        <form onSubmit={handleAddTutorials} className="space-y-6">
           <div>
-            <label className="block font-semibold mb-2" htmlFor="name">
+            <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300" htmlFor="name">
               Name
             </label>
             <input
@@ -63,11 +54,11 @@ const AddTutorials = () => {
               id="name"
               name="name"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
             />
           </div>
           <div>
-            <label className="block font-semibold mb-2" htmlFor="email">
+            <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300" htmlFor="email">
               Email
             </label>
             <input
@@ -75,11 +66,11 @@ const AddTutorials = () => {
               id="email"
               name="email"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
             />
           </div>
           <div>
-            <label className="block font-semibold mb-2" htmlFor="image">
+            <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300" htmlFor="image">
               Tutorial Image URL
             </label>
             <input
@@ -87,35 +78,35 @@ const AddTutorials = () => {
               id="image"
               name="image"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
             />
           </div>
           <div>
-  <label className="block font-semibold mb-2" htmlFor="language">
-    Language
-  </label>
-  <select
-    id="language"
-    name="language"
-    required
-    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
-  >
-    <option value="" disabled selected>
-      Select Language
-    </option>
-    <option value="English">English</option>
-    <option value="Spanish">Spanish</option>
-    <option value="French">French</option>
-    <option value="German">German</option>
-    <option value="Italian">Italian</option>
-    <option value="Chinese">Chinese</option>
-    <option value="Arabic">Arabic</option>
-    <option value="Japanese">Japanese</option>
-    <option value="Portuguese">Portuguese</option>
-  </select>
-</div>
+            <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300" htmlFor="language">
+              Language
+            </label>
+            <select
+              id="language"
+              name="language"
+              required
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
+            >
+              <option value="" disabled selected>
+                Select Language
+              </option>
+              <option value="English">English</option>
+              <option value="Spanish">Spanish</option>
+              <option value="French">French</option>
+              <option value="German">German</option>
+              <option value="Italian">Italian</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Arabic">Arabic</option>
+              <option value="Japanese">Japanese</option>
+              <option value="Portuguese">Portuguese</option>
+            </select>
+          </div>
           <div>
-            <label className="block font-semibold mb-2" htmlFor="price">
+            <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300" htmlFor="price">
               Price
             </label>
             <input
@@ -123,23 +114,23 @@ const AddTutorials = () => {
               id="price"
               name="price"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
             />
           </div>
           <div>
-            <label className="block font-semibold mb-2" htmlFor="description">
+            <label className="block font-semibold mb-2 text-gray-700 dark:text-gray-300" htmlFor="description">
               Description
             </label>
             <textarea
               id="description"
               name="description"
               required
-              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-400"
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
             ></textarea>
           </div>
           <button
             type="submit"
-            className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg"
+            className="w-full py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg shadow-md transform hover:scale-105 transition-all duration-300"
           >
             Submit Tutorial
           </button>

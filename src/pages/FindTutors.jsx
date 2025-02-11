@@ -2,7 +2,8 @@ import { useLoaderData } from "react-router-dom";
 import TutorialCard from "../components/TutorialCard";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa"; // Importing React Icon for search
+import { FaSearch, FaCode } from "react-icons/fa"; // Importing React Icons
+import { motion } from "framer-motion"; // Importing Framer Motion for animations
 
 const FindTutors = () => {
   const tutorials = useLoaderData();
@@ -28,40 +29,72 @@ const FindTutors = () => {
   });
 
   return (
-    <div className="dark:bg-purple-800 dark:text-white ">
-      <div className="relative w-9/12 mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-6">Find Tutors</h2>
+    <div className="bg-white dark:bg-[#0B0716]   min-h-screen py-12">
+      <div className="relative w-11/12 lg:w-9/12 mx-auto">
+        {/* Heading and Subheading */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-4xl  lg:text-5xl font-bold text-green-600 dark:text-white mb-4 flex items-center justify-center gap-2">
+            <FaCode className="text-purple-500" />
+            Find Your Perfect Tutor
+          </h1>
+          <p className="text-lg roboto dark:text-gray-300 text-purple-600">
+            Discover expert tutors in your desired programming language and take
+            your skills to the next level.
+          </p>
+        </motion.div>
 
         {/* Language Search Input */}
-        <div className="flex justify-between mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="flex flex-col roboto lg:flex-row justify-between items-center mb-8 gap-4"
+        >
           <div>
-            <p className="text-center text-lg mb-4">
+            <p className="text-center roboto text-lg text-purple-500 dark:text-gray-300">
               {selectedLanguage
                 ? `Showing results for language: ${selectedLanguage}`
                 : "Showing all tutors"}
             </p>
           </div>
-          <div className="relative w-1/4">
+          <div className="relative  roboto w-full lg:w-1/4">
             <input
               type="text"
               placeholder="Search by language"
-              className="w-full  p-4 pl-10 pr-4 bg-gray-100 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300 shadow-md hover:shadow-lg"
+              className="w-full p-4 pl-12 pr-4 bg-green-50 border border-green-300 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300 shadow-lg hover:shadow-xl"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             {/* Search Icon */}
             <FaSearch
-              className="absolute top-1/2 left-3 transform -translate-y-1/2 text-gray-500"
+              className="absolute top-1/2 left-4 transform -translate-y-1/2 text-gray-400"
               size={20}
             />
           </div>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {/* Tutorial Cards Grid */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        >
           {filteredTutorials.map((tutorial) => (
-            <TutorialCard key={tutorial._id} tutorial={tutorial} />
+            <motion.div
+              key={tutorial._id}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+            >
+              <TutorialCard tutorial={tutorial} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );
