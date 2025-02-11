@@ -1,3 +1,6 @@
+import React from "react";
+import { motion } from "framer-motion";
+
 const Testimonials = () => {
   const testimonials = [
     {
@@ -42,39 +45,71 @@ const Testimonials = () => {
     },
   ];
 
-  return (
-<div className="dark:bg-purple-900 py-8">
-  <h2 className="text-2xl text-blue-700 font-bold text-center mb-6 dark:text-white">
-    What Our Users Say
-  </h2>
-  <p className="text-purple-600 text-center dark:text-gray-300 mt-2">
-    Discover how our platform has made a difference in the lives of language
-    learners worldwide.
-  </p>
-  <div className="overflow-hidden mt-6">
-    <div className="marquee flex gap-8 animate-marquee  justify-center sm:flex-nowrap">
-      {testimonials.map((testimonial, index) => (
-        <div
-          key={index}
-          className="bg-purple-500 text-white dark:bg-gray-800 shadow rounded-lg p-6 flex flex-col items-center w-full max-w-xs sm:w-72"
-        >
-          <img
-            src={testimonial.photo}
-            alt={testimonial.name}
-            className="w-16 h-16 rounded-full mb-4"
-          />
-          <h3 className="text-lg font-semibold mb-2 text-white dark:text-white">
-            {testimonial.name}
-          </h3>
-          <p className="text-sm text-white dark:text-gray-300 text-center">
-            {testimonial.feedback}
-          </p>
-        </div>
-      ))}
-    </div>
-  </div>
-</div>
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+      },
+    },
+  };
 
+  const cardVariants = {
+    hidden: { y: 50, opacity: 0 },
+    visible: { y: 0, opacity: 1 },
+  };
+
+  return (
+    <section className="dark:bg-[#0B0716] roboto py-16">
+      <div className="container mx-auto px-6 lg:px-12 text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: -50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold text-green-700 dark:text-white mb-4"
+        >
+          What Our Users Say
+        </motion.h2>
+        <motion.p
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-lg text-purple-600 dark:text-gray-300 mb-12"
+        >
+          Discover how our platform has made a difference in the lives of language
+          learners worldwide.
+        </motion.p>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              variants={cardVariants}
+              className="bg-white dark:bg-[#1C1B23] rounded-lg shadow-lg p-6 hover:shadow-2xl transition duration-300 transform hover:scale-105"
+            >
+              <div className="flex flex-col items-center">
+                <img
+                  src={testimonial.photo}
+                  alt={testimonial.name}
+                  className="w-20 h-20 rounded-full mb-4 border-4 border-blue-500 dark:border-purple-500"
+                />
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                  {testimonial.name}
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-300 text-center">
+                  {testimonial.feedback}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

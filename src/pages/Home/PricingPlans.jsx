@@ -52,11 +52,11 @@ const PricingPlans = () => {
   ];
 
   return (
-    <section className="bg-gray-50  dark:bg-[#0B0716] py-20">
+    <section className="bg-gray-50 roboto dark:bg-[#0B0716] py-20">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h1 
-            className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6"
+            className="text-4xl roboto lg:text-5xl font-bold text-gray-900 dark:text-white mb-6"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
