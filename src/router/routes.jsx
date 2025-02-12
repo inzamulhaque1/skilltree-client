@@ -11,6 +11,9 @@ import PrivateRoute from "./PrivateRoute";
 import MyTutorials from "../pages/MyTutorials";
 import UpdateTutorial from "../pages/UpdateTutorial";
 import ErrorPage from "../components/ErrorPage";
+import PricingPlans from "../pages/Home/PricingPlans";
+import FAQSection from "../pages/Home/FAQSection";
+import Testimonials from "../pages/Home/Testimonials";
 
 const routes = createBrowserRouter([
   {
@@ -61,6 +64,18 @@ const routes = createBrowserRouter([
       {
         path: "login",
         element: <Login />,
+      },
+      {
+        path: "pricing",
+        element: <PricingPlans></PricingPlans>,
+      },
+      {
+        path: "review",
+        element: <Testimonials></Testimonials>,
+      },
+      {
+        path: "faq",
+        element: <FAQSection></FAQSection>,
       },
     ],
   },
