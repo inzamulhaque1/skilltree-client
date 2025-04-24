@@ -58,6 +58,9 @@ const Banner = ({ theme }) => {
               <span className="absolute inset-0 bg-gradient-to-r from-green-600 to-green-500 transform -translate-x-full transition-transform duration-500 group-hover:translate-x-0 group-hover:m-1 group-hover:rounded-md group-hover:duration-300"></span>
               <span className="relative roboto z-10">Get Started</span>
             </button>
+            <button className="relative ml-5 px-6 py-3 text-purple-500 border border-purple-500 font-bold hover:bg-purple-500 hover:text-white rounded-lg overflow-hidden group">
+              Get Started
+            </button>
           </motion.div>
           {/* Right Section */}
           <div className="w-full lg:w-1/2 mt-6 lg:mt-0 flex justify-center p-10">
