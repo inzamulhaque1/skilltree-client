@@ -10,6 +10,7 @@ import ContactSection from "./ContactSection";
 import Newsletter from "./Newsletter";
 import SpecialOffers from "./SpecialOffers";
 import ReferralProgram from "./ReferralProgram";
+import CommunityForums from "./CommunityForums";
 
 const Home = () => {
   const { theme } = useOutletContext();
@@ -24,6 +25,7 @@ const Home = () => {
       <Testimonials></Testimonials>
       <InteractiveTools></InteractiveTools>
       <Newsletter></Newsletter>
+      <CommunityForums></CommunityForums>
       <ContactSection></ContactSection>
       <ReferralProgram></ReferralProgram>
       <FAQSection></FAQSection>
