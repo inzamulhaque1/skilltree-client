@@ -8,6 +8,7 @@ import InteractiveTools from "./InteractiveTools";
 import PricingPlans from "./PricingPlans";
 import ContactSection from "./ContactSection";
 import Newsletter from "./Newsletter";
+import SpecialOffers from "./SpecialOffers";
 
 const Home = () => {
   const { theme } = useOutletContext();
@@ -18,6 +19,7 @@ const Home = () => {
       <LanguageCategory></LanguageCategory>
       <Status></Status>
       <PricingPlans></PricingPlans>
+      <SpecialOffers></SpecialOffers>
       <Testimonials></Testimonials>
       <InteractiveTools></InteractiveTools>
       <Newsletter></Newsletter>
