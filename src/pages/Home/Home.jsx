@@ -7,6 +7,7 @@ import FAQSection from "./FAQSection";
 import InteractiveTools from "./InteractiveTools";
 import PricingPlans from "./PricingPlans";
 import ContactSection from "./ContactSection";
+import Newsletter from "./Newsletter";
 
 const Home = () => {
   const { theme } = useOutletContext();
@@ -19,6 +20,7 @@ const Home = () => {
       <PricingPlans></PricingPlans>
       <Testimonials></Testimonials>
       <InteractiveTools></InteractiveTools>
+      <Newsletter></Newsletter>
       <ContactSection></ContactSection>
       <FAQSection></FAQSection>
     </div>
