@@ -1,13 +1,26 @@
 import { Link, useLoaderData } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { FaEye } from "react-icons/fa";
 import { CiEdit } from "react-icons/ci";
 import { FaDeleteLeft } from "react-icons/fa6";
+import { useAuth } from "../providers/AuthProvider";
+
 
 const MyTutorials = () => {
   const loadedTutorials = useLoaderData();
-  const [tutorials, setTutorials] = useState(loadedTutorials);
+  const [tutorials, setTutorials] = useState([]);
+  const { user } = useAuth();
+
+  // Filter tutorials when component mounts or when user/loadedTutorials changes
+  useEffect(() => {
+    if (user && user.email) {
+      const filteredTutorials = loadedTutorials.filter(
+        (tutorial) => tutorial.email === user.email
+      );
+      setTutorials(filteredTutorials);
+    }
+  }, [user, loadedTutorials]);
 
   const handleDelete = async (id) => {
     // SweetAlert2 confirmation
@@ -65,60 +78,67 @@ const MyTutorials = () => {
           </p>
         </div>
 
-        {/* Table */}
-        <div className="overflow-x-auto">
-          <table className="table w-full border border-gray-300 dark:border-gray-500">
-            <thead>
-              <tr className="bg-gray-200 dark:bg-gray-700">
-                <th className="text-center text-gray-900 dark:text-gray-200">Image</th>
-                <th className="text-center text-gray-900 dark:text-gray-200">Name</th>
-                <th className="text-center text-gray-900 dark:text-gray-200">Language</th>
-                <th className="text-center text-gray-900 dark:text-gray-200">Price</th>
-                <th className="text-center text-gray-900 dark:text-gray-200">Review</th>
-                <th className="text-center text-gray-900 dark:text-gray-200">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {tutorials.map((tutorial) => (
-                <tr
-                  key={tutorial._id}
-                  className="hover:bg-gray-100 dark:hover:bg-gray-800"
-                >
-                  <td className="text-center">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12 mx-auto">
-                        <img src={tutorial.image} alt={tutorial.name} />
-                      </div>
-                    </div>
-                  </td>
-                  <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.name}</td>
-                  <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.language}</td>
-                  <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.price}</td>
-                  <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.reviewCount}</td>
-
-                  <td className="text-center space-x-2 flex justify-center items-center">
-                    <button className="btn btn-ghost btn-xs text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                      <Link to={`/tutor/${tutorial._id}`}>
-                        <FaEye />{" "}
-                      </Link>
-                    </button>
-                    <button className="btn btn-ghost btn-xs text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
-                      <Link to={`/update/${tutorial._id}`}>
-                        <CiEdit />
-                      </Link>
-                    </button>
-                    <button
-                      className="btn btn-ghost btn-xs text-red-500 dark:text-red-400 hover:text-white"
-                      onClick={() => handleDelete(tutorial._id)}
-                    >
-                      <FaDeleteLeft />
-                    </button>
-                  </td>
+        {tutorials.length === 0 ? (
+          <div className="text-center p-8 bg-white dark:bg-gray-800 rounded-lg shadow">
+            <p className="text-xl text-gray-700 dark:text-gray-300">
+              You haven&apos;t added any tutorials yet.
+            </p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="table w-full border border-gray-300 dark:border-gray-500">
+              <thead>
+                <tr className="bg-gray-200 dark:bg-gray-700">
+                  <th className="text-center text-gray-900 dark:text-gray-200">Image</th>
+                  <th className="text-center text-gray-900 dark:text-gray-200">Name</th>
+                  <th className="text-center text-gray-900 dark:text-gray-200">Language</th>
+                  <th className="text-center text-gray-900 dark:text-gray-200">Price</th>
+                  <th className="text-center text-gray-900 dark:text-gray-200">Review</th>
+                  <th className="text-center text-gray-900 dark:text-gray-200">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {tutorials.map((tutorial) => (
+                  <tr
+                    key={tutorial._id}
+                    className="hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    <td className="text-center">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12 mx-auto">
+                          <img src={tutorial.image} alt={tutorial.name} />
+                        </div>
+                      </div>
+                    </td>
+                    <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.name}</td>
+                    <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.language}</td>
+                    <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.price}</td>
+                    <td className="text-center text-gray-900 dark:text-gray-300">{tutorial.reviewCount}</td>
+
+                    <td className="text-center space-x-2 flex justify-center items-center">
+                      <button className="btn btn-ghost btn-xs text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                        <Link to={`/tutor/${tutorial._id}`}>
+                          <FaEye />
+                        </Link>
+                      </button>
+                      <button className="btn btn-ghost btn-xs text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white">
+                        <Link to={`/update/${tutorial._id}`}>
+                          <CiEdit />
+                        </Link>
+                      </button>
+                      <button
+                        className="btn btn-ghost btn-xs text-red-500 dark:text-red-400 hover:text-white"
+                        onClick={() => handleDelete(tutorial._id)}
+                      >
+                        <FaDeleteLeft />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,6 +1,10 @@
 import Swal from "sweetalert2";
+import { useAuth } from "../providers/AuthProvider";
+
 
 const AddTutorials = () => {
+  // Get the current user from the auth context
+  const { user } = useAuth();
 
   const handleAddTutorials = (e) => {
     e.preventDefault();
@@ -8,7 +12,8 @@ const AddTutorials = () => {
     const form = e.target;
 
     const name = form.name.value;
-    const email = form.email.value;
+    // Use the logged-in user's email instead of the form input
+    const email = user.email;
     const image = form.image.value;
     const language = form.language.value;
     const price = form.price.value;
@@ -34,13 +39,23 @@ const AddTutorials = () => {
               icon: "success",
               confirmButtonText: "Done",
             });
+            form.reset(); // Reset the form after successful submission
           }
     })
+    .catch(error => {
+      console.error("Error adding tutorial:", error);
+      Swal.fire({
+        title: "Error!",
+        text: "Failed to add tutorial. Please try again.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    });
   };
 
   return (
-    <div className="dark:bg-[#0B0716]  dark:text-white min-h-screen flex justify-center items-center px-2 py-6">
-      <div className="w-full max-w-lg  bg-white dark:bg-[#1E1A2F] p-4  rounded-xl shadow-xl transform  transition-all duration-300">
+    <div className="dark:bg-[#0B0716] dark:text-white min-h-screen flex justify-center items-center px-2 py-6">
+      <div className="w-full max-w-lg bg-white dark:bg-[#1E1A2F] p-4 rounded-xl shadow-xl transform transition-all duration-300">
         <h1 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">
           Add New Tutorial
         </h1>
@@ -65,8 +80,9 @@ const AddTutorials = () => {
               type="email"
               id="email"
               name="email"
-              required
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
+              value={user?.email || ""}
+              readOnly
+              className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-100 dark:bg-gray-700 dark:border-gray-500 dark:text-white cursor-not-allowed"
             />
           </div>
           <div>
@@ -90,8 +106,9 @@ const AddTutorials = () => {
               name="language"
               required
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
+              defaultValue=""
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select Language
               </option>
               <option value="English">English</option>
@@ -125,6 +142,7 @@ const AddTutorials = () => {
               id="description"
               name="description"
               required
+              rows="4"
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:text-white"
             ></textarea>
           </div>

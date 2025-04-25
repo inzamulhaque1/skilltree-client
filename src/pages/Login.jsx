@@ -56,7 +56,7 @@ const Login = () => {
         <motion.img
           whileHover={{ scale: 1.02 }}
           className="w-full rounded-3xl shadow-lg"
-          src="https://e0.pxfuel.com/wallpapers/348/445/desktop-wallpaper-the-breakfast-club-and-mobile-background-iphone-6.jpg"
+          src="https://i0.wp.com/cms.babbel.news/wp-content/uploads/2016/04/World_04.jpg?strip=none&ssl=1"
           alt="SkillTree"
         />
       </motion.div>
